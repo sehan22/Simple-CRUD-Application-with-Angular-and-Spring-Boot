@@ -11,11 +11,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/angularfrontend",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -46,9 +46,12 @@
               "outputHashing": "all"
             },
             "development": {
+              "buildOptimizer": false,
               "optimization": false,
+              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -57,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angularfrontend:build:production"
+              "browserTarget": "angularfrontend:build:production"
             },
             "development": {
-              "buildTarget": "angularfrontend:build:development"
+              "browserTarget": "angularfrontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "angularfrontend:build"
+            "browserTarget": "angularfrontend:build"
           }
         },
         "test": {
@@ -91,8 +94,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "be6bab45-b742-4d41-83ba-7d316e4c49e9"
   }
 }
